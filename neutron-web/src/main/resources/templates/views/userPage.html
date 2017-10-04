@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>userPage</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+
+<!--<input type="text" th:value="${user.name}" class="form-control input-sm" name="name"/>-->
+<p><strong>以下是列表zzz:</strong></p>
+<p th:inline="text">total:[[${page.total}]]</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <td>姓名</td>
+        <td>用户名</td>
+        <td>电话</td>
+    </tr>
+    <tr th:each="user,userStat : ${page.list}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.phone}"></td>
+    </tr>
+</table>
+
+<!--小于5页-->
+<div th:if="${(page.pages le 5) and (page.pages gt 0)}">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+
+            <li th:each="num_seq : ${#numbers.sequence(1, page.pages)}">
+                <a href="#" aria-label="Previous" th:if="${num_seq eq 1}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                <a th:if="${num_seq eq page.pageNum}" th:inline="text"><!--当前页-->
+                    [[${page.pageNum}]]
+                </a>
+                <a th:unless="${num_seq eq page.pageNum}" th:inline="text"
+                   th:href="@{'/userPage?pageNum='+${num_seq}+${searchUrl}}">
+                    [[${num_seq}]]
+                </a>
+                <a th:if="${num_seq eq page.pages}" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+<!--总页数大于5-->
+<div th:if="${page.pages gt 5}">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a th:if="${page.pageNum gt 1}" th:href="@{'/userPage?pageNum='+${page.pageNum-1}+${searchUrl}}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+                <a th:if="${page.pageNum le 1}">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li th:if="${page.pageNum-2 gt 0}" th:inline="text"><!--ge大于等于 gt大于-->
+                <a th:href="@{'/userPage?pageNum='+${page.pageNum-2}+${searchUrl}}">[[${page.pageNum-2}]]</a>
+            </li>
+            <li th:if="${page.pageNum-1 gt 0}" th:inline="text">
+                <a th:href="@{'/userPage?pageNum='+${page.pageNum-1}+${searchUrl}}">[[${page.pageNum-1}]]</a>
+            </li>
+            <li th:inline="text">
+                <a>[[${page.pageNum}]]</a>
+            </li>
+            <li th:if="${page.pageNum+1 le page.pages}" th:inline="text"><!--le小于等于 lt小于-->
+                <a th:href="@{'/userPage?pageNum='+${page.pageNum+1}+${searchUrl}}">[[${page.pageNum+1}]]</a>
+            </li>
+            <li th:if="${page.pageNum+2 le page.pages}" th:inline="text">
+                <a th:href="@{'/userPage?pageNum='+${page.pageNum+2}+${searchUrl}}">[[${page.pageNum+2}]]</a>
+            </li>
+            <li>
+                <a th:if="${page.pageNum lt page.pages}" th:href="@{'/userPage?pageNum='+${page.pageNum+1}+${searchUrl}}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+                <a th:if="${page.pageNum ge page.pages}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--每页显示条数-->
+<div>
+    <strong>每页显示条数:</strong>
+    <a th:href="@{'/userPage?pageSize=5'+${searchUrl}}">5</a>
+</div>
+<script th:inline="javascript">
+    var currentPage = [[${page.pageNum}]]//当前页
+    var total = [[${page.total}]]//总条数
+    var pages = [[${page.pages}]]//总页数
+    //alert(currentPage)
+
+    function firstPage() {
+        if (currentPage == 1) {
+            alert("这已经是第一页")
+            return false
+        } else {
+            submitForm("/userPage?pageNum=1")//请求后台返回第一页的数据
+        }
+    }
+</script>
+</body>
+</html>

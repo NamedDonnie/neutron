@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <link layout:include="@{~/views/in-css} :: in-css"/>
+    <title>导航页面</title>
+
+</head>
+<body>
+
+<ul class="list-group">
+    <li class="list-group-item"><a th:href="@{study.html}">学习</a></li>
+    <li class="list-group-item"><a th:href="@{/userPage}">用户列表user list</a></li>
+    <li class="list-group-item"><a th:href="@{views/userListAngular.html}">学习</a></li>
+    <li class="list-group-item"><a th:href="@{/dept/getAll}">获取所有部门json</a></li>
+    <li class="list-group-item"><a th:href="@{/views/employee}">employee页面</a></li>
+    <li class="list-group-item"><a th:href="@{/user/login}">登录页面</a></li>
+    <a th:href="study.html">aaaa</a>
+
+</ul>
+<span>----------------------------------------------</span>
+<ul class="list-group">
+    <li class="list-group-item"><a th:href="@{/views/community}"  target="_black">community</a></li>
+    <li class="list-group-item"><a th:href="@{/community/list}"  target="_black">community-list</a></li>
+    <li class="list-group-item"><a th:href="@{/community/add}"  target="_black">community-add</a></li>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="communityModule" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>z-社区</title>
+    <link layout:include="@{~/views/in-css} :: in-css" th:remove="tag"/>
+</head>
+<body>
+
+<div ng-controller='DeathrayMenuController'>
+    <button ng-click='toggleMenu()'>Toggle Menu</button>
+    <ul ng-show='menuState.show'>
+        <li ng-click='stun()'>Stun</li>
+        <li ng-click='disintegrate()'>Disintegrate</li>
+        <li ng-click='erase()'>Erase from history</li>
+    </ul>
+</div>
+<script layout:include="@{~/views/in-js} :: in-js" th:remove="tag"/>
+<script type="text/javascript" th:src="@{~/js/community/NgShow.js}"></script>
+</body>
+</html>

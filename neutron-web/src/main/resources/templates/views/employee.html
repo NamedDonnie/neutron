@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>employee</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <script type="text/javascript" th:src="@{/js/angular.min.js}"></script>
+    <script th:inline="javascript" th:src="@{/js/empolyee/script.js}"></script>
+
+</head>
+<body ng-app="httpExample">
+这是employee页面
+<div ng-controller="FetchController">
+
+    <button id="fetchbtn" th:inline="text" ng-click="fetch('get','http://localhost:8080/dept/getAll')">fetch</button>
+    <!--<button id="samplegetbtn" ng-click="updateModel('GET', 'http-hello.html')">Sample GET</button>
+    <button id="samplejsonpbtn"
+            ng-click="updateModel('JSONP',
+                  'https://angularjs.org/greet.php?name=Super%20Hero')">
+        Sample JSONP
+    </button>-->
+    <!--<button id="invalidjsonpbtn"
+            ng-click="updateModel('JSONP', 'https://angularjs.org/doesntexist')">
+        Invalid JSONP
+    </button>-->
+    <pre>http status code: {{status}}</pre>
+    <pre>http response data: {{data}}</pre>
+    手动加载:fetch
+    <select>
+        <option ng-repeat="x in data" name="deptId" value="{{x.id}}">{{x.name}}</option>
+    </select>
+    自动加载出来的
+    <select>
+        <option ng-repeat="x in depts" value="{{x.id}}">{{x.name}}</option>
+    </select>
+    <div>
+        <table>
+            <tr>
+                <td>姓名</td>
+                <td><input name="name"/></td>
+            </tr>
+            <tr>
+                <td>手机号</td>
+                <td><input name="name"/></td>
+            </tr>
+        </table>
+    </div>
+    <button id="fetchbtn2" th:inline="text" ng-click="fetch2('POST','http://localhost:8080/employee/saveTest')">fetch2
+    </button>
+</div>
+
+</body>
+
+
+</html>

@@ -1,0 +1,25 @@
+pagehelper:
+    dialect: com.github.pagehelper.dialect.helper.MySqlDialect
+    auto-dialect: true
+    close-conn: false
+    reasonable: true
+    params: count=countSql
+    support-methods-arguments: true
+
+mybatis:
+    type-aliases-package: pers.donnie.model
+    mapper-locations: classpath:mapper/*.xml
+spring:
+    freemarker:
+      template-loader-path: classpath:/templates/fm_views
+    thymeleaf:
+      cache: false
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/neutron?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+
+logging:
+    level: debug
