@@ -34,6 +34,18 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.2</version>
         </dependency>
+        <!--POI-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <!--PDF-->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.12</version>
+        </dependency>
 
     </dependencies>
 

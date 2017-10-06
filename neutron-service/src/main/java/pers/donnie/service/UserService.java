@@ -14,4 +14,6 @@ public interface UserService {
     PageInfo<User> getAllUser(Map<String, Object> paramsMap);
 
     User getUserById();
+
+
 }
