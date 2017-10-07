@@ -13,8 +13,8 @@ public class PdfUtil {
 
     public static void getPdf() {
 
-        String templatePdfPath = "C:\\Java\\aPdf.pdf";
-        String newPdfPath = "C:\\Java\\aNewPdf.pdf";
+        String templatePdfPath = "C:/Java/aPdf.pdf";
+        String newPdfPath = "C:/Java/aNewPdf.pdf";
 
         PdfReader pdfReader;
         FileOutputStream fileOutputStream;
