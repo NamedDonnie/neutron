@@ -1,4 +1,4 @@
-package pers.donnie;
+package pers.donnie.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 

@@ -8,6 +8,9 @@
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>neutron-core</module>
+		<module>neutron-dao</module>
+		<module>neutron-service</module>
+		<module>neutron-web</module>
     </modules>
     <packaging>pom</packaging>
 

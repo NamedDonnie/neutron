@@ -1,4 +1,4 @@
-package pers.donnie;
+package pers.donnie.config;
 
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;

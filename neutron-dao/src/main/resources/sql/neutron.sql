@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50557
 File Encoding         : 65001
 
-Date: 2017-09-29 12:51:43
+Date: 2017-10-09 17:31:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -116,6 +116,72 @@ CREATE TABLE `room` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for sys_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_permission`;
+CREATE TABLE `sys_permission` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL COMMENT '名称',
+  `resource_type` varchar(255) DEFAULT NULL COMMENT '资源类型，[menu|button]',
+  `url` varchar(255) DEFAULT NULL COMMENT '资源路径',
+  `permission` varchar(255) DEFAULT NULL COMMENT '权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view',
+  `parent_id` int(11) DEFAULT NULL COMMENT '父编号',
+  `parent_ids` varchar(255) DEFAULT NULL COMMENT '父编号列表',
+  `available` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_permission
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
+  `id` int(11) NOT NULL,
+  `role` varchar(255) DEFAULT NULL COMMENT '角色标识程序中判断使用,如"admin",这个是唯一的',
+  `description` varchar(255) DEFAULT NULL COMMENT '角色描述,UI界面显示使用',
+  `available` smallint(6) DEFAULT NULL COMMENT '是否可用,如果不可用将不会添加给用户',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_permission`;
+CREATE TABLE `sys_role_permission` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `permission_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_role_permission
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -140,3 +206,21 @@ INSERT INTO `user` VALUES ('6', '傻蛋', 'shadan', '3424', '43242');
 INSERT INTO `user` VALUES ('7', '唐玄奘', 'tang', '4324', '34243242');
 INSERT INTO `user` VALUES ('8', '孙悟空', 'monkeySun', '3424234', '1111111111');
 INSERT INTO `user` VALUES ('9', '猪八戒', 'pig@163.com', '123131', '1231333');
+
+-- ----------------------------
+-- Table structure for user_info
+-- ----------------------------
+DROP TABLE IF EXISTS `user_info`;
+CREATE TABLE `user_info` (
+  `uid` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL COMMENT '账号',
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL COMMENT '加密密码的盐',
+  `state` int(11) DEFAULT NULL COMMENT '用户状态',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_info
+-- ----------------------------
